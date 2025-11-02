@@ -46,21 +46,21 @@ Then open your browser and go to:
 http://127.0.0.1:5000/
 
 ## 📂 Project Structure
-Multi-Tool-Web-Application/
-│
-├── app1.py
-├── requirements.txt
-├── README.md
-│
-├── templates/
-│   ├── text_tools.html
-│   ├── image_tools.html
-│   └── security_tools.html
-│
-└── static/
-    ├── css/
-    ├── js/
-    └── audio/
+Multi-Tool-Web-Application/<br>
+│<br>
+├── app1.py <br>
+├── requirements.txt<br>
+├── README.md<br>
+│<br>
+├── templates/<br>
+│   ├── text_tools.html<br>
+│   ├── image_tools.html<br>
+│   └── security_tools.html<br>
+│<br>
+└── static/<br>
+    ├── css/<br>
+    ├── js/<br>
+    └── audio/<br>
 
 ## 💡 Future Enhancements
 
