@@ -58,9 +58,9 @@ Multi-Tool-Web-Application/<br>
 │   └── security_tools.html<br>
 │<br>
 └── static/<br>
-    ├── css/<br>
-    ├── js/<br>
-    └── audio/<br>
+    ├── css/
+<br>├── js/
+<br>└── audio/
 
 ## 💡 Future Enhancements
 
