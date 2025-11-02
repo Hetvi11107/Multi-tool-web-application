@@ -1,0 +1,6 @@
+Flask
+Pillow
+gTTS
+numpy
+opencv-python
+fpdf

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MultiTool Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/image.css') }}" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static',filename='/icons/settings.png')}}" alt="Icon" class="logo-icon" />
+      <span>MultiTool Pro</span>
+    </div>
+    <nav class="nav-links">
+      <a href="{{ url_for('text')}}" >Text Tools</a>
+      <a href="{{ url_for('image')}}" class="active">Image Tools</a>
+      <a href="{{ url_for('security')}}">Security Tools</a>
+    </nav>
+    <button class="sign-in">Sign In</button>
+  </header>
+
+  <main class="hero">
+    <h1>All-In-One Web Toolkit</h1>
+    <p>
+      Powerful tools for text processing, image manipulation, and for security right in your browser.
+    </p>
+  </main>
+
+<!-------------------------------------main section ------------------------------>
+
+<section class="tools-section">
+<h2>Image Tools</h2>
+<div class="tools-grid">
+
+<!-- Image Resizer -->
+<div class="tool-card">
+  <div class="tool-header">
+    <img src="{{ url_for('static', filename='/icons/camera.png')}}" alt="resize">
+    Image Resizer
+  </div>
+    <form action="{{ url_for('image_resizer') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="image_file" accept="image/*" required>
+    <label>Width (px)</label>
+    <input type="number" name="width"  required>
+    <label>Height (px)</label>
+    <input type="number" name="height"  required>
+    <div class="button-row">
+      <button type="submit" class="btn">Resize Image</button>
+    </div>
+</form>
+</div>
+
+<!-- Aspect Ratio Fixer -->
+<form action="{{ url_for('ratio_fixer') }}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="tool_type" value="aspect_ratio">
+  <div class="tool-card">
+    <div class="tool-header">
+      <img src="{{ url_for('static', filename='/icons/ratio.png')}}" alt="resize">
+      Aspect Ratio Fixer
+    </div>    
+    <input type="file" name="image_file" accept="image/*" required>
+    <label>Select Aspect Ratio:</label>
+    <select name="aspect_ratio" required>
+      <option value="1:1">1:1</option>
+      <option value="16:9">16:9</option>
+      <option value="4:3">4:3</option>
+    </select>
+    <button type="submit" class="btn">Fix Ratio</button>
+  </div>
+</form>
+
+<!-- Face Blur Tool -->
+<form action="{{ url_for('face_blur') }}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="tool_type" value="blur">
+  <div class="tool-card">
+    <div class="tool-header">
+      <img src="{{ url_for('static', filename='/icons/face-scan.png')}}" alt="resize">
+      Face Censor / Blur
+    </div>
+    <input type="file" name="image_file" accept="image/*" required>
+    <button type="submit" class="btn">Blur Faces</button>
+
+  </div>
+</form>
+</section>
+
+<!----------------------------------- this is footer ------------------------------->
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>MultiTool Pro</h3>
+      <p>All-in-one web toolkit for your daily tasks. Free to use, no registration required.</p>
+      <div class="social-icons">
+        <a href="#"><img src="{{ url_for('static', filename='/icons/twitter.png')}}" alt="Twitter" /></a>
+        <a href="#"><img src="{{ url_for('static', filename='/icons/github.png')}}" alt="GitHub" /></a>
+      </div>
+    </div>
+    
+    <div class="footer-column">
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="{{ url_for('text')}}">Text Tools</a></li>
+        <li><a href="{{ url_for('image')}}">Image Tools</a></li>
+        <li><a href="{{ url_for('security')}}">Security Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    &copy; 2025 MultiTool Pro. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
+

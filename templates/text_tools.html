@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MultiTool Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/text.css') }}" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static',filename='/icons/settings.png')}}" alt="Icon" class="logo-icon" />
+      <span>MultiTool Pro</span>
+    </div>
+    <nav class="nav-links">
+      <a href="{{ url_for('text')}}" class="active">Text Tools</a>
+      <a href="{{ url_for('image')}}">Image Tools</a>
+      <a href="{{ url_for('security')}}">Security Tools</a>
+    </nav>
+    <button class="sign-in">Sign In</button>
+  </header>
+
+  <main class="hero">
+    <h1>All-In-One Web Toolkit</h1>
+    <p>
+      Powerful tools for text processing, image manipulation, and for security right in your browser.
+    </p>
+  </main>
+
+<!-----------------------  main section------------------------------ -->
+<section class="tools-section">
+  <h2>Text Tools</h2>
+  <div class="tools-grid">
+
+<!------------case convertor----------->
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/upper-and-lower.png')}}" alt="Case Converter Icon">
+        <span>Case Converter</span>
+      </div>
+      <form action="{{ url_for('case_convert')}}" method="post"> 
+        <textarea id="caseInput" name="case__input" placeholder="Enter text here...">{{ input__text }}</textarea>
+        <div class="button-row">
+          <button type="submit" name="action" value="upper">UPPER CASE</button>
+          <button type="submit" name="action" value="lower">lower case</button>
+          <button type="submit" name="action" value="sentence">Sentence case</button>
+        </div>
+        <label>Converted Text</label>
+        <textarea readonly>{{ converted__text }}</textarea>
+      </form>
+    </div>
+
+<!----------- Word Counter -------->
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/justify.png')}}" alt="Word Counter Icon">
+        <span>Word Counter</span>
+      </div>
+      <form action="{{ url_for('word_count')}}" method="post"> 
+      <textarea id="wordInput" name="count_input" placeholder="Enter text to analyze...">{{ input }}</textarea>
+      <div class="button-row">
+      <button type="submit" name="action" value="count">Count Words & Characters</button>      
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>Words</strong><span>{{ word_count }}</span></div>
+        <div class="stat"><strong>Characters</strong><span>{{ char_count }}</span></div>
+        <div class="stat"><strong>Sentences</strong><span>{{ sentence_count }}</span></div>
+      </div>
+      </form>
+    </div>
+
+
+<!-----------text to speech------------->
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/text-to-speech.png')}}" alt="TTS Icon">
+        <span>Text to Speech (TTS)</span>
+      </div>
+      <form action="{{ url_for('text_speech')}}" method="post"> 
+      <textarea name="tts_input" placeholder="Enter text to speak...">{{ tts_text }}</textarea>
+      <div class="button-row">
+        <button type="submit" name="action" value="tts">Convert to Speech</button>
+      </div>
+      {% if tts_audio %}
+      <audio controls>
+        <source src="{{ url_for('static', filename=tts_audio) }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      {% endif %}
+      </form>
+    </div>
+
+<!-----------Remove Duplicate Lines------------->
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/delete.png')}}" alt="TTS Icon">
+        <span>Remove Duplicate</span>
+      </div>
+      <form action="{{ url_for('remove_duplicates') }}" method="post">
+        <textarea name="input_txt" placeholder="Paste your text here..." rows="6">{{ input_txt }}</textarea>
+        <div class="button-row">
+          <button type="submit">Remove Duplicates</button>
+        </div>
+      </form>
+      
+      {% if output_text is not none %}
+      <div class="output-section">
+        <h3>Output (Duplicates Removed):</h3>
+        <textarea readonly rows="6">{{ output_text }}</textarea>
+      </div>
+      {% endif %}
+    </div>
+
+<!-----------Remove Duplicate Lines------------->
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/pdf.png')}}" alt="TTS Icon">
+        <span>Text to PDF</span>
+      </div>
+      <form action="{{ url_for('text_to_pdf') }}" method="post">
+        <textarea name="text_input" placeholder="Paste your text here..." rows="6">{{ text_input }}</textarea>
+        <div class="button-row">
+          <button type="submit">Convert</button>
+        </div>
+      </form>
+    </div>
+
+
+  </div> 
+</section>
+<!------------------------------ this is footer --------------------------------------->
+
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>MultiTool Pro</h3>
+      <p>All-in-one web toolkit for your daily tasks. Free to use, no registration required.</p>
+      <div class="social-icons">
+        <a href="#"><img src="{{ url_for('static', filename='/icons/twitter.png')}}" alt="Twitter" /></a>
+        <a href="#"><img src="{{ url_for('static', filename='/icons/github.png')}}" alt="GitHub" /></a>
+      </div>
+    </div>
+    
+    <div class="footer-column">
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="{{ url_for('text')}}">Text Tools</a></li>
+        <li><a href="{{ url_for('image')}}">Image Tools</a></li>
+        <li><a href="{{ url_for('security')}}">Security Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    &copy; 2025 MultiTool Pro. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

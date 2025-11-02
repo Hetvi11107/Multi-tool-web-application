@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MultiTool Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/security.css') }}" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static',filename='/icons/settings.png')}}" alt="Icon" class="logo-icon" />
+      <span>MultiTool Pro</span>
+    </div>
+    <nav class="nav-links">
+      <a href="{{ url_for('text')}}" >Text Tools</a>
+      <a href="{{ url_for('image')}}">Image Tools</a>
+      <a href="{{ url_for('security')}}" class="active">Security Tools</a>
+    </nav>
+    <button class="sign-in">Sign In</button>
+  </header>
+
+  <main class="hero">
+    <h1>All-In-One Web Toolkit</h1>
+    <p>
+      Powerful tools for text processing, image manipulation, and for security right in your browser.
+    </p>
+  </main>
+
+<!--------------------------- this is main section -------------------------------------->
+<section class="tools-section">
+  <h2>Security Tools</h2>
+  <div class="tools-grid"> 
+
+    <!-- Password Strength Checker -->
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/encrypted.png')}}" alt="Shield Icon">
+        Password Strength Checker
+      </div>
+      <form method="POST" action="/check-password">
+        <input type="text" name="passwordInput" placeholder="Enter your password" required>
+        <button type="submit">Check Strength</button>
+      </form>
+      {% if strength %}
+        <div id="strengthMessage"><strong>Strength:</strong> {{ strength }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Password Generator -->
+    <div class="tool-card">
+      <div class="tool-header">
+        <img src="{{ url_for('static', filename='/icons/locked.png')}}" alt="Lock Icon">
+        Password Generator
+      </div>
+      <form method="POST" action="/generate-password">
+        <label for="length">Length</label>
+        <input type="number" name="length" min="4" max="32" value="12" required><br>
+
+        <label><input type="checkbox" name="includeUpper"> Include Uppercase</label><br>
+        <label><input type="checkbox" name="includeNumbers"> Include Numbers</label><br>
+        <label><input type="checkbox" name="includeSymbols"> Include Symbols</label><br>
+
+        <button type="submit">Generate</button>
+      </form>
+      {% if generated_password %}
+        <textarea readonly>{{ generated_password }}</textarea>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+<!------------------------------------ this is footer ----------------------------------->
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>MultiTool Pro</h3>
+      <p>All-in-one web toolkit for your daily tasks. Free to use, no registration required.</p>
+      <div class="social-icons">
+        <a href="#"><img src="{{ url_for('static', filename='/icons/twitter.png')}}" alt="Twitter" /></a>
+        <a href="#"><img src="{{ url_for('static', filename='/icons/github.png')}}" alt="GitHub" /></a>
+      </div>
+    </div>
+    
+    <div class="footer-column">
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="{{ url_for('text')}}">Text Tools</a></li>
+        <li><a href="{{ url_for('image')}}">Image Tools</a></li>
+        <li><a href="{{ url_for('security')}}">Security Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    &copy; 2025 MultiTool Pro. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
